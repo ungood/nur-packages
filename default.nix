@@ -8,13 +8,12 @@
 
 { pkgs ? import <nixpkgs> { } }:
 
-{
+rec {
   # The `lib`, `modules`, and `overlays` names are special
-  lib = import ./lib { inherit pkgs; }; # functions
-  modules = import ./modules; # NixOS modules
-  overlays = import ./overlays; # nixpkgs overlays
+  lib = import ./lib { inherit pkgs; };
+  modules = import ./modules;
+  overlays = import ./overlays;
 
   example-package = pkgs.callPackage ./pkgs/example-package { };
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
+  obsidian-cli = pkgs.callPackage ./pkgs/obsidian-cli { inherit obsidian-cli; };
 }
